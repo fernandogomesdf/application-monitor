@@ -12,7 +12,7 @@
 	<artifactId>application-monitor-server</artifactId>
 
 	<packaging>war</packaging>
-	<name>application-monitor-server Maven Webapp</name>
+	<name>application-monitor-server</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 
