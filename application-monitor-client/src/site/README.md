@@ -1,4 +1,2 @@
-run the commands below, in this folder, before opening index.html:<br/>
+before opening index.html, be sure to have NodeJS installed.
 
-npm install angular@latest<br/>
-npm install material-design-lite@latest --save
