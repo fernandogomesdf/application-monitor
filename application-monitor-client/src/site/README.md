@@ -1,2 +1,1 @@
-before opening index.html, be sure to have NodeJS installed.
-
+before opening index.html, be sure to have NodeJS installed an run mvn install from the root.
