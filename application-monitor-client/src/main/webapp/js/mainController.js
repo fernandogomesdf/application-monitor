@@ -38,12 +38,5 @@ angular.module('app').controller('MainCtrl', function($scope, $window, $interval
 				}
 	    	}
 	    });
-		
-		/*$http.post($scope.servers.values[i].url,{data: $scope.servers.values[i]}).success(function(data) {
-			alert(data);
-		}).error(function(data, status) {
-			alert('ERROR! ' + status);
-			console.log(data);
-		});*/
 	}
 });
