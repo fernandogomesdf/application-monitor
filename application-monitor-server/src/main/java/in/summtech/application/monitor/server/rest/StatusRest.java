@@ -3,6 +3,7 @@ package in.summtech.application.monitor.server.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.JsonObject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -21,8 +22,8 @@ public class StatusRest {
 
 	@POST
 	@Path("/serverStatus")
-	public Response serverStatus() {
-		return buildResponse(new WebServer("teste", "teste", 1, "teste", new ArrayList<Service>()));
+	public Response serverStatus(JsonObject data) {
+		return buildResponse(new WebServer(data.getInt("id"), data.getString("name"), data.getString("url"), 1, "teste", new ArrayList<Service>()));
 	}
 	
 	/**
@@ -42,8 +43,8 @@ public class StatusRest {
 	 * Innner class for explanatory purposes
 	 * @author Fernando
 	 */
-	private class WebServer {
-		
+	public class WebServer {
+		private Integer id;
 		private String name;
 		private String url;
 		private Integer status; // 1 - fully functional (green) / 2 - some
@@ -60,13 +61,22 @@ public class StatusRest {
 		 * @param msg 
 		 * @param services like databases, elasticsearch or jcr
 		 */
-		public WebServer(String name, String url, Integer status, String msg, List<Service> services) {
+		public WebServer(Integer id, String name, String url, Integer status, String msg, List<Service> services) {
 			super();
+			this.id = id;
 			this.name = name;
 			this.url = url;
 			this.status = status;
 			this.msg = msg;
 			this.services = services;
+		}
+		
+		public Integer getId() {
+			return id;
+		}
+ 		
+		public void setId(Integer id) {
+			this.id = id;
 		}
 
 		public String getName() {
@@ -116,7 +126,7 @@ public class StatusRest {
 	 * @author Fernando
 	 *
 	 */
-	private class Service {
+	public class Service {
 		
 		private String name;
 		private String url;
