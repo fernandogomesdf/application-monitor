@@ -6,6 +6,20 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="node_modules/material-design-lite/dist/material.indigo-pink.min.css">
 
+<style type="text/css">
+	div[status="1"] { 
+	   background: green; 
+	}
+	div[status="2"] { 
+	   background: orange; 
+	}
+	div[status="3"] { 
+	   background: red; 
+	}
+</style>
+
+
+
 <!--  JS -->
 <script defer src="node_modules/material-design-lite/material.min.js"></script>
 <script src="node_modules/angular/angular.min.js"></script>
@@ -25,46 +39,12 @@
 		
 		<main class="mdl-layout__content">
 			<div class="content-grid mdl-grid">
-			  <div class="mdl-cell" style="background: green;">
-			    sd
-			  </div>
-			  <div class="mdl-cell" style="background: red;">
-			    sdsadas
-			  </div>
-			  <div class="mdl-cell" style="background: orange;">
-			    sdsdsd
-			  </div>
-			  <div class="mdl-cell">
-			    sd
-			  </div>
-			  <div class="mdl-cell">
-			    sdsadas
-			  </div>
-			  <div class="mdl-cell">
-			    sdsdsd
-			  </div>
-			  <div class="mdl-cell">
-			    sd
-			  </div>
-			  <div class="mdl-cell">
-			    sdsadas
-			  </div>
-			  <div class="mdl-cell">
-			    sdsdsd
-			  </div>
-			  <div class="mdl-cell">
-			    sd
-			  </div>
-			  <div class="mdl-cell">
-			    sdsadas
-			  </div>
-			  <div class="mdl-cell">
-			    sdsdsd
-			  </div>
+				<div class="mdl-cell" ng-repeat="server in servers.values" style="padding: 1vh; color: white; text-shadow: 1px 1px 1px #000;" status="{{server.status}}">
+				    <center><b>{{server.name}}</b></center>
+				    URL : {{server.url}}
+				</div>
 			</div>
-		
 			{{servers}}
-		
 		</main>
 	</div>
 </body>
