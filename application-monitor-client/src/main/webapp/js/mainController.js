@@ -28,7 +28,15 @@ angular.module('app').controller('MainCtrl', function($scope, $window, $interval
 				}
 			}
 	    }).error(function(data, status, headers, config) {
-	        console.log(data);
+	    	// replace values in array with server values
+	    	for ( var j = 0 ; j < $scope.servers.values.length ; j++ ) { 
+	    		if (j == config.data.id) {
+					$scope.servers.values[j].status = 3; // red alert
+					$scope.servers.values[j].serverStatus = status; 
+					$scope.servers.values[j].data = data; // error message from the server
+					break;
+				}
+	    	}
 	    });
 		
 		/*$http.post($scope.servers.values[i].url,{data: $scope.servers.values[i]}).success(function(data) {
