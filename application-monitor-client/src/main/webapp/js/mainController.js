@@ -41,7 +41,6 @@ angular.module('app').controller('MainCtrl', function($scope, $window, $interval
 						$scope.servers.values[j].serverStatus = status;
 						$scope.servers.values[j].errMsg = data; // error message from the server
 						$scope.servers.values[j].services = [];
-						
 						break;
 					}
 		    	}
