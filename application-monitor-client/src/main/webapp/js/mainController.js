@@ -1,5 +1,8 @@
 angular.module('app').controller('MainCtrl', function($scope, $window, $interval, $rootScope, $http) {
 	
+	$scope.refreshTime = 15;
+	$scope.remainingTime = $scope.refreshTime;
+	
 	// three servers with same values for testing purposes. It should be changed with real values.
 	$scope.servers = {
 		"values" : [
@@ -47,8 +50,16 @@ angular.module('app').controller('MainCtrl', function($scope, $window, $interval
 	}
 	
 	$scope.checkServers();
+	
 	$interval(function(){
 		$scope.checkServers();
+	}, $scope.refreshTime * 1000);
+	
+	$interval(function(){
+		if ($scope.remainingTime == 1) {
+			$scope.remainingTime = $scope.refreshTime + 1;
+		}
+		$scope.remainingTime = $scope.remainingTime - 1;
 	}, 1000);
 	
 });
