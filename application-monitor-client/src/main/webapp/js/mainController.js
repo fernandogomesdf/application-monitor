@@ -25,6 +25,8 @@ angular.module('app').controller('MainCtrl', function($scope, $window, $interval
 				for ( var j = 0 ; j < $scope.servers.values.length ; j++ ) { 
 					if (j == data.id) {
 						$scope.servers.values[j] = data;
+						$scope.servers.values[j].serverStatus = status;
+						$scope.servers.values[j].errMsg = null;
 						break;
 					}
 				}
@@ -33,8 +35,10 @@ angular.module('app').controller('MainCtrl', function($scope, $window, $interval
 		    	for ( var j = 0 ; j < $scope.servers.values.length ; j++ ) { 
 		    		if (j == config.data.id) {
 						$scope.servers.values[j].status = 3; // red alert
-						$scope.servers.values[j].serverStatus = status; 
-						$scope.servers.values[j].data = data; // error message from the server
+						$scope.servers.values[j].serverStatus = status;
+						$scope.servers.values[j].errMsg = data; // error message from the server
+						$scope.servers.values[j].services = [];
+						
 						break;
 					}
 		    	}
@@ -45,6 +49,6 @@ angular.module('app').controller('MainCtrl', function($scope, $window, $interval
 	$scope.checkServers();
 	$interval(function(){
 		$scope.checkServers();
-	}, 500);
+	}, 1000);
 	
 });

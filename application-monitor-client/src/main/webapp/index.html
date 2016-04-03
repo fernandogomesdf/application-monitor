@@ -16,6 +16,12 @@
 	div[status="3"] { 
 	   background: red; 
 	}
+	.serviceDiv {
+		border-style: solid;
+		border-width : 1px;
+    	border-color: #ffffff;
+    	margin-top: 1px;
+	}
 </style>
 
 
@@ -33,7 +39,7 @@
 		
 		<header class="custom-header mdl-layout__header mdl-layout__header--waterfall">
 	        <div class="mdl-layout__header-row">
-	            <span class="mdl-layout-title">Web Applications Monitor</span>
+	            <span class="mdl-layout-title" style="text-shadow: 1px 1px 1px #000;"">Web Applications Monitor</span>
 	        </div>
 	    </header>
 		
@@ -41,10 +47,20 @@
 			<div class="content-grid mdl-grid">
 				<div class="mdl-cell" ng-repeat="server in servers.values" style="padding: 1vh; color: white; text-shadow: 1px 1px 1px #000;" status="{{server.status}}">
 				    <center><b>{{server.name}}</b></center>
-				    URL : {{server.url}}
+				    URL : {{server.url}}<br/>
+				    Status : {{server.status}} - {{server.msg}}<br/>
+				    HTTP Status : {{server.serverStatus}} <br/>
+				    <div ng-show="server.errMsg != null" style="overflow: scroll; height: 20vh">{{server.errMsg}}</div>
+				    <div>
+				    	<center><b>Services</b></center>
+				    	<div class="serviceDiv" ng-repeat="service in server.services" status="{{service.status}}" style="padding: 1vh;">
+				    		 <b>Name : {{service.name}}</b><br/>
+				    		 URL : {{service.url}}<br/>
+				    		 Status : {{service.status}} - {{service.msg}}<br/>
+				    	</div>
+				    </div>
 				</div>
 			</div>
-			{{servers}}
 		</main>
 	</div>
 </body>
