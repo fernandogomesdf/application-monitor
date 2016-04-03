@@ -28,7 +28,7 @@
 	</build>
     
     <modules>
-		<module>application-monitor-server</module>
 		<module>application-monitor-client</module>
+		<module>application-monitor-server</module>
 	</modules>
 </project>

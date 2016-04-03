@@ -20,6 +20,13 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
@@ -33,6 +40,7 @@
 		<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.4.0</version>
 				<!-- optional -->
 				<configuration>
 					<workingDirectory>src/main/webapp</workingDirectory>
