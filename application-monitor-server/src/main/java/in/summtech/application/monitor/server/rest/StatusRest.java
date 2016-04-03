@@ -1,8 +1,10 @@
 package in.summtech.application.monitor.server.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -14,13 +16,13 @@ public class StatusRest {
 	@GET
 	@Path("/hello")
 	public Response hello() {
-		return buildResponse("{ \"hello\" : \"world\" }");
+		return buildResponse("({ \"hello\" : \"world\" })");
 	}
 
-	@GET
+	@POST
 	@Path("/serverStatus")
-	public Response serverStatus(String value) {
-		return buildResponse(value);
+	public Response serverStatus() {
+		return buildResponse(new WebServer("teste", "teste", 1, "teste", new ArrayList<Service>()));
 	}
 	
 	/**
@@ -30,12 +32,14 @@ public class StatusRest {
 	 */
 	private Response buildResponse(Object entity) {
 		ResponseBuilder responseBuilder = Response.ok(entity, MediaType.APPLICATION_JSON);
+		responseBuilder.header("Access-Control-Allow-Origin", "*");
 		Response response = responseBuilder.build();
 		return response;
 	}
 	
 	/**
 	 * Represents the WebServer to be monitored
+	 * Innner class for explanatory purposes
 	 * @author Fernando
 	 */
 	private class WebServer {
@@ -108,6 +112,7 @@ public class StatusRest {
 	
 	/**
 	 * Some service for monitoring like Database, ElasticSearch or JCR
+	 * Innner class for explanatory purposes
 	 * @author Fernando
 	 *
 	 */

@@ -7,31 +7,40 @@
 		<artifactId>application-monitor</artifactId>
 		<version>${global.version}</version>
 	</parent>
+	
 	<artifactId>application-monitor-client</artifactId>
-	<packaging>pom</packaging>
-	<distributionManagement>
-		<site>
-			<id>website</id>
-			<url>scp://webhost.company.com/www/website</url>
-		</site>
-	</distributionManagement>
+
+	<packaging>war</packaging>
+	<name>application-monitor-client</name>
+	<url>http://maven.apache.org</url>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
 	<build>
+		<finalName>application-monitor-client</finalName>
 		<plugins>
-			<plugin>
+		<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<!-- optional -->
 				<configuration>
-					<workingDirectory>src/site</workingDirectory>
+					<workingDirectory>src/main/webapp</workingDirectory>
 				</configuration>
 				<executions>
 					<execution>
 						<id>npm_angular</id>
-						<phase>generate-sources</phase>
+						<phase>install</phase>
 						<goals>
 							<goal>exec</goal>
 						</goals>
@@ -45,7 +54,7 @@
 					</execution>
 					<execution>
 						<id>npm_material-design-lite</id>
-						<phase>generate-sources</phase>
+						<phase>install</phase>
 						<goals>
 							<goal>exec</goal>
 						</goals>
@@ -61,6 +70,5 @@
 				</executions>
 			</plugin>
 		</plugins>
-
 	</build>
 </project>
